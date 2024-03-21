@@ -67,6 +67,9 @@ public class Shop {
 		this.log = index;
 	}
 	
+	private void logOut() {
+		this.log = -1;
+	}
 	
 	public void run() {
 		while(true) {
@@ -84,8 +87,8 @@ public class Shop {
 //			removeUser();
 		else if(sel == LOG_IN && !isLogin())
 			logIn();
-//		else if(sel == LOG_OUT && isLogin())
-//			logOut();
+		else if(sel == LOG_OUT && isLogin())
+			logOut();
 //		else if(sel == SHOPPING && isLogin())
 //			shopping();
 //		else if(sel == MYPAGE && isLogin())
