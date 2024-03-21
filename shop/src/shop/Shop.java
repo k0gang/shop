@@ -83,9 +83,13 @@ public class Shop {
 	
 	
 	
-	
+	private void printItems() {
+		itemManager.printItems();
+	}
 	
 	private void addItem() {
+		printItems();
+		
 		String name = inputString("name");
 		int price = inputNumber("price");
 		
@@ -102,11 +106,15 @@ public class Shop {
 		
 	}
 	
+	private void deleteItem() {
+		
+	}
+	
 	private void runAdminMenu(int sel) {
 		if(sel == ADD_ITEM) 
 			addItem();
-//		else if(sel == DELETE_ITEM)
-//			deleteItem();
+		else if(sel == DELETE_ITEM)
+			deleteItem();
 //		else if(sel == UPDATE_ITEM)
 //			updateItem();
 //		else if(sel == TOTAL_INCOME)

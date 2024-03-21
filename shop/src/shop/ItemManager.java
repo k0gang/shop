@@ -14,6 +14,11 @@ public class ItemManager {
 	
 	
 	
+	public void printItems() {
+		for(Item item : list)
+			System.out.println(item);
+	}
+	
 	public boolean checkDupl(Item tempItem) {
 		for(Item item : list)
 			if(item.getName().equals(tempItem.getName()))
