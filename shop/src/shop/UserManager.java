@@ -14,7 +14,9 @@ public class UserManager {
 	
 	
 	
-	
+	public User findUserByIndex(int index) {
+		return list.get(index);
+	}
 	
 	public int findUserIndex(User tempUser) {
 		for(int i=0; i<list.size(); i++) {

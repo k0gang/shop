@@ -62,12 +62,16 @@ public class Shop {
 			return;
 		}
 		
-		System.out.printf("%s님 로그인\n",id);
+		System.out.printf("%s님 로그인 완료\n",id);
 		
 		this.log = index;
 	}
 	
 	private void logOut() {
+		User user = userManager.findUserByIndex(log);
+		
+		System.out.printf("%s님 로그아웃 완료\n",user.getId());
+		
 		this.log = -1;
 	}
 	
@@ -104,6 +108,12 @@ public class Shop {
 	}
 	
 	private void printMenu() {
+		if(isLogin()) {
+			System.out.println("----------------");
+			User user = userManager.findUserByIndex(log);
+			System.out.printf("%s님 로그인중\n",user.getId());
+		}
+		
 		System.out.printf("---%s Shop---\n",title);
 		System.out.println("1) 회원가입");
 		System.out.println("2) 탈퇴");
