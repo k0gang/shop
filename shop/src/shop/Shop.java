@@ -26,6 +26,10 @@ public class Shop {
 		log = -1;
 	}
 	
+	
+	
+	
+	
 	private void join() {
 		String id = inputString("id");
 		String pw = inputString("pw");
@@ -42,6 +46,28 @@ public class Shop {
 		System.out.printf("%s님 회원가입 완료\n",id);
 	}
 	
+	
+	
+	
+	private void logIn() {
+		String id = inputString("id");
+		String pw = inputString("pw");
+		
+		User user = new User(id,pw);
+		
+		int index = userManager.findUserIndex(user);
+		
+		if(index == -1) {
+			System.err.println("회원정보가 일치하지 않습니다");
+			return;
+		}
+		
+		System.out.printf("%s님 로그인\n",id);
+		
+		this.log = index;
+	}
+	
+	
 	public void run() {
 		while(true) {
 			printMenu();
@@ -50,25 +76,28 @@ public class Shop {
 			runMenu(sel);
 		}
 	}
-
 	
 	private void runMenu(int sel) {
-		if(sel == JOIN)
+		if(sel == JOIN && !isLogin())
 			join();
-//		else if(sel == REMOVE_USER)
+//		else if(sel == REMOVE_USER && isLogin())
 //			removeUser();
-//		else if(sel == LOG_IN)
-//			logIn();
-//		else if(sel == LOG_OUT)
+		else if(sel == LOG_IN && !isLogin())
+			logIn();
+//		else if(sel == LOG_OUT && isLogin())
 //			logOut();
-//		else if(sel == SHOPPING)
+//		else if(sel == SHOPPING && isLogin())
 //			shopping();
-//		else if(sel == MYPAGE)
+//		else if(sel == MYPAGE && isLogin())
 //			myPage();
-//		else if(sel == ADMIN)
+//		else if(sel == ADMIN && !isLogin())
 //			admin();
 //		else if(sel == EXIT)
 //			exit();
+	}
+	
+	private boolean isLogin() {
+		return this.log == -1 ? false : true;
 	}
 	
 	private void printMenu() {
