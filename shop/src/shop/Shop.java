@@ -32,10 +32,14 @@ public class Shop {
 	
 		User user = new User(id,pw);
 		
-		if(userManager.checkDupl(id))
+		if(userManager.checkDupl(id)) {
+			System.err.println("중복된 id가 존재합니다");
 			return;
+		}
 		
 		userManager.add(user);
+		
+		System.out.printf("%s님 회원가입 완료\n",id);
 	}
 	
 	public void run() {
