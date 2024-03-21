@@ -12,13 +12,18 @@ public class Shop {
 	private final int MYPAGE = 6;
 	private final int ADMIN = 7;
 	private final int EXIT = 0;
-	
+
+	private final int ADD_ITEM = 1;
+	private final int DELETE_ITEM = 2;
+	private final int UPDATE_ITEM = 3;
+	private final int TOTAL_INCOME = 4;
+		
 	private Scanner sc = new Scanner(System.in);
 	private String title;
 	private int log;
 	
 	UserManager userManager = UserManager.getInstance();
-	
+	ItemManager itemManager = ItemManager.getInstance();
 	
 	
 	public Shop(String title) {
@@ -75,6 +80,50 @@ public class Shop {
 		this.log = -1;
 	}
 	
+	
+	
+	
+	
+	
+	private void addItem() {
+		String name = inputString("name");
+		int price = inputNumber("price");
+		
+		Item item = new Item(name,price);
+		
+		if(itemManager.checkDupl(item)) {
+			System.err.println("같은 이름의 item이 존재합니다");
+			return;
+		}
+		
+		System.out.printf("%s (%d원) 등록완료\n",name,price);
+		
+		itemManager.add(item);
+		
+	}
+	
+	private void runAdminMenu(int sel) {
+		if(sel == ADD_ITEM) 
+			addItem();
+//		else if(sel == DELETE_ITEM)
+//			deleteItem();
+//		else if(sel == UPDATE_ITEM)
+//			updateItem();
+//		else if(sel == TOTAL_INCOME)
+//			showTotalIncome();
+	}
+	
+	private void admin() {
+		System.out.println("1)아이템 등록");
+		System.out.println("2)아이템 삭제");
+		System.out.println("3)아이템 수정");
+		System.out.println("4)매출 조회");
+		
+		int sel = inputNumber("입력");
+		
+		runAdminMenu(sel);
+	}
+	
 	public void run() {
 		while(true) {
 			printMenu();
@@ -97,8 +146,8 @@ public class Shop {
 //			shopping();
 //		else if(sel == MYPAGE && isLogin())
 //			myPage();
-//		else if(sel == ADMIN && !isLogin())
-//			admin();
+		else if(sel == ADMIN && !isLogin())
+			admin();
 //		else if(sel == EXIT)
 //			exit();
 	}
