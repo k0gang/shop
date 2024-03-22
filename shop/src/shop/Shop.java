@@ -123,13 +123,33 @@ public class Shop {
 		
 	}
 	
+	private void updateItem() {
+		itemManager.printItems();
+		
+		String name = inputString("name");
+		
+		Item item = itemManager.findItemByName(name);
+		
+		if(item == null) {
+			System.err.println("입력하신 상품이 존재하지 않습니다");
+			return;
+		}
+		
+		int price = inputNumber("수정할 가격");
+		
+		item.setPrice(price);
+		
+		System.out.println("수정 완료" + item);
+		
+	}
+	
 	private void runAdminMenu(int sel) {
 		if(sel == ADD_ITEM) 
 			addItem();
 		else if(sel == DELETE_ITEM)
 			deleteItem();
-//		else if(sel == UPDATE_ITEM)
-//			updateItem();
+		else if(sel == UPDATE_ITEM)
+			updateItem();
 //		else if(sel == TOTAL_INCOME)
 //			showTotalIncome();
 	}

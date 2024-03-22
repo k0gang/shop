@@ -1,8 +1,8 @@
 package shop;
 
 public class Item {
-	String name;
-	int price;
+	private String name;
+	private int price;
 	
 	public Item(String name, int price) {
 		this.name = name;
@@ -14,7 +14,10 @@ public class Item {
 		return this.name;
 	}
 	
-
+	public void setPrice (int price) {
+		this.price = price;
+	}
+	
 	
 	
 	@Override
