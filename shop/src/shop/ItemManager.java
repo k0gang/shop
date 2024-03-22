@@ -14,6 +14,10 @@ public class ItemManager {
 	
 	
 	
+	public int getItemSize() {
+		return list.size();
+	}
+	
 	public void printItems() {
 		for(int i=0; i<list.size(); i++) {
 			Item item = list.get(i);
@@ -26,6 +30,10 @@ public class ItemManager {
 			if(item.getName().equals(tempItem.getName()))
 					return true;
 		return false;	
+	}
+	
+	public Item getItemByIndex(int index) {
+		return list.get(index);
 	}
 	
 	public int findItemIndex(Item tempItem) {

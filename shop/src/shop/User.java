@@ -3,12 +3,12 @@ package shop;
 public class User {
 	private String id,password;
 	
-	Cart cart = Cart.getInstance();
+	private Cart cart;
 	
 	public User(String id, String password) {
 		this.id = id;
 		this.password = password;
-		
+		cart = new Cart();
 	}
 	
 	public String getId() {
@@ -22,4 +22,15 @@ public class User {
 	public void addCart(Item item) {
 		cart.addItem(item);
 	}
+	
+	public void printCart() {
+		cart.printCart();
+	}
+	
+	@Override
+	public String toString() {
+		return "";
+	}
+	
+	
 }

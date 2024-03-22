@@ -18,6 +18,9 @@ public class Item {
 		this.price = price;
 	}
 	
+	public int getPrice() {
+		return this.price;
+	}
 	
 	
 	@Override

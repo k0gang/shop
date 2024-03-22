@@ -17,6 +17,10 @@ public class Shop {
 	private final int DELETE_ITEM = 2;
 	private final int UPDATE_ITEM = 3;
 	private final int TOTAL_INCOME = 4;
+	
+	private final int DELETE_CART = 1;
+	private final int UPDATE_CART = 2;
+	private final int BUY = 3;
 		
 	private Scanner sc = new Scanner(System.in);
 	private String title;
@@ -104,13 +108,39 @@ public class Shop {
 		System.out.println(item);
 		System.out.printf("%d개 장바구니 담기 완료\n",amount);
 		
-		while(amount < 0) {
+		while(amount > 0) {
 			user.addCart(item);
 			
 			amount --;
 		}
 	}
 	
+	private void myPage() {
+		printCart();
+		
+		printMyPageMenu();
+		
+		int sel = inputNumber("입력");
+		
+		runMyPage(sel);
+	}
+
+	private void runMyPage(int sel) {
+//		if(sel == DELETE_CART)
+//			deleteCart();
+//		else if(sel == UPDATE_CART)
+//			updateCart();
+//		else if(sel == BUY)
+//			buy();
+	}
+	
+	private void printCart() {
+		
+		User user = userManager.findUserByIndex(log);
+
+		user.printCart();
+		
+	}
 	
 	
 
@@ -184,6 +214,12 @@ public class Shop {
 //			showTotalIncome();
 	}
 	
+	private void printMyPageMenu() {
+		System.out.println("1)항목 삭제");
+		System.out.println("2)수량 수정");
+		System.out.println("3)결제");
+	}
+	
 	private void admin() {
 		System.out.println("1)아이템 등록");
 		System.out.println("2)아이템 삭제");
@@ -215,8 +251,8 @@ public class Shop {
 			logOut();
 		else if(sel == SHOPPING && isLogin())
 			shopping();
-//		else if(sel == MYPAGE && isLogin())
-//			myPage();
+		else if(sel == MYPAGE && isLogin())
+			myPage();
 		else if(sel == ADMIN && !isLogin())
 			admin();
 //		else if(sel == EXIT)
