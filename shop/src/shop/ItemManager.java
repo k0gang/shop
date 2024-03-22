@@ -44,6 +44,13 @@ public class ItemManager {
 		return null;
 	}
 	
+	public Item findItemByIndex(int index) {
+		if(index < 0 || index >= list.size()) 
+			return null;
+		
+		return list.get(index);
+	}
+	
 	public void add(Item item) {
 		list.add(item);
 	}

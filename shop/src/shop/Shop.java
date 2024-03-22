@@ -80,6 +80,36 @@ public class Shop {
 		this.log = -1;
 	}
 	
+	private void shopping() {
+		itemManager.printItems();
+		
+		int index = inputNumber("상품 번호")-1;
+		
+		Item item = itemManager.findItemByIndex(index);
+		
+		if(item == null) {
+			System.err.println("다시 확인");
+			return;
+		}
+		
+		int amount = inputNumber("갯수 입력");
+		
+		if(amount <= 0 || amount > 99) {
+			System.out.println("다시 확인");
+			return;
+		}
+		
+		User user = userManager.findUserByIndex(log);
+		
+		System.out.println(item);
+		System.out.printf("%d개 장바구니 담기 완료\n",amount);
+		
+		while(amount < 0) {
+			user.addCart(item);
+			
+			amount --;
+		}
+	}
 	
 	
 	
@@ -183,8 +213,8 @@ public class Shop {
 			logIn();
 		else if(sel == LOG_OUT && isLogin())
 			logOut();
-//		else if(sel == SHOPPING && isLogin())
-//			shopping();
+		else if(sel == SHOPPING && isLogin())
+			shopping();
 //		else if(sel == MYPAGE && isLogin())
 //			myPage();
 		else if(sel == ADMIN && !isLogin())
