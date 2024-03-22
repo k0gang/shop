@@ -15,8 +15,10 @@ public class ItemManager {
 	
 	
 	public void printItems() {
-		for(Item item : list)
-			System.out.println(item);
+		for(int i=0; i<list.size(); i++) {
+			Item item = list.get(i);
+			System.out.println(i+1 + ") " + item);
+		}
 	}
 	
 	public boolean checkDupl(Item tempItem) {
@@ -26,8 +28,38 @@ public class ItemManager {
 		return false;	
 	}
 	
+	public int findItemIndex(Item tempItem) {
+		for(int i=0; i<list.size(); i++) {
+			Item item = list.get(i);
+			if(item.getName().equals(tempItem.getName()))
+				return i;
+		}
+		return -1;
+	}
+	
+	public Item findItemByName(String name) {
+		for(Item item : list)
+			if(item.getName().equals(name))
+				return item;
+		return null;
+	}
+	
 	public void add(Item item) {
 		list.add(item);
 	}
 	
+	public void remove(Item item) {
+		list.remove(item);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+

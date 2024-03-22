@@ -3,13 +3,10 @@ package shop;
 public class Item {
 	String name;
 	int price;
-	int number;
-	
 	
 	public Item(String name, int price) {
 		this.name = name;
 		this.price = price;
-		
 	}
 	
 	
@@ -17,13 +14,11 @@ public class Item {
 		return this.name;
 	}
 	
-	public int getNumber() {
-		return this.number;
-	}
+
 	
 	
 	@Override
 	public String toString() {
-		return String.format("%d) %s : %d원",number,name,price);
+		return String.format("%s : %d원",name,price);
 	}
 }

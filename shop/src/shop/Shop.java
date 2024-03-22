@@ -83,12 +83,10 @@ public class Shop {
 	
 	
 	
-	private void printItems() {
-		itemManager.printItems();
-	}
+
 	
 	private void addItem() {
-		printItems();
+		itemManager.printItems();
 		
 		String name = inputString("name");
 		int price = inputNumber("price");
@@ -100,13 +98,28 @@ public class Shop {
 			return;
 		}
 		
-		System.out.printf("%s (%d원) 등록완료\n",name,price);
-		
 		itemManager.add(item);
 		
+		int index = itemManager.findItemIndex(item);
+		
+		System.out.printf("%d) %s (%d원) 등록완료\n",index+1,name,price);
 	}
 	
 	private void deleteItem() {
+		itemManager.printItems();
+		
+		String name = inputString("name");
+		
+		Item item = itemManager.findItemByName(name);
+		
+		if(item == null) {
+			System.err.println("입력하신 상품이 존재하지 않습니다");
+			return;
+		}
+		
+		System.out.printf("%s 삭제 완료\n",name);
+		
+		itemManager.remove(item);
 		
 	}
 	
